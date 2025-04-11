@@ -1,0 +1,22 @@
+{
+    "name": "carpenter",
+    "version": "1.0.0",
+    "description": "A modern web framework",
+    "type": "module",
+    "source": "public/index.html",
+    "scripts": {
+        "start": "parcel",
+        "build": "parcel build",
+        "build:dev": "parcel build --no-optimize"
+    },
+    "dependencies": {
+        "@types/react": "^19.1.0",
+        "@types/react-dom": "^19.1.2",
+        "react": "^19.1.0",
+        "react-dom": "^19.1.0"
+    },
+    "devDependencies": {
+        "parcel": "2.14.4",
+        "typescript": "^5.0.2"
+    }
+}
