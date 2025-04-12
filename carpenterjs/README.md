@@ -16,9 +16,9 @@ First, you need to create a type declaration file to define your action types:
 
 ```typescript
 // types/actions.d.ts
-import { ActionTypeMap } from "@carpenter/actions";
+import { ActionTypeMap } from "@carpenter-js/actions";
 
-declare module "@carpenter/actions" {
+declare module "@carpenter-js/actions" {
   interface ActionTypeMap {
     "contact/submit": {
       input: {
@@ -41,7 +41,7 @@ declare module "@carpenter/actions" {
 ### Basic Usage
 
 ```tsx
-import { createAction } from "@carpenter/actions";
+import { createAction } from "@carpenter-js/actions";
 
 // Create an action
 const submitContact = createAction("contact/submit");
@@ -71,7 +71,7 @@ function ContactForm() {
 ### Using Hooks
 
 ```tsx
-import { useAction, useActionWithState } from "@carpenter/actions";
+import { useAction, useActionWithState } from "@carpenter-js/actions";
 import { useState } from "react";
 
 function ContactFormWithHooks() {
