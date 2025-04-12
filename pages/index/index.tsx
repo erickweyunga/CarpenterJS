@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { createAction } from "../../carpenter/client";
+import { createAction } from "../../client";
 
 interface PlusOneInput {
   number: number;
@@ -12,7 +12,7 @@ interface PlusOneOutput {
 const plusOneAction = createAction<PlusOneInput, PlusOneOutput>("index/plus_one");
 
 export default function Page() {
-  const [one, setOne] = useState<number>(0);
+  const [one, setOne] = useState(0);
 
   return (
     <div>

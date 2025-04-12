@@ -1,8 +1,0 @@
-{
-  "/_actions": {
-    "target": "http://localhost:8000/",
-    "pathRewrite": {
-      "^/_actions": "_actions"
-    }
-  }
-}

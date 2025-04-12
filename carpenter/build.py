@@ -29,12 +29,14 @@ def run_build_process(prod: bool = True):
     """Run the Parcel build process."""
     global build_process
 
-    build_command = ["npm.cmd", "run", "build"] if prod else [
-        "npm.cmd", "run", "build:dev"]
+    build_command = (
+        ["npm.cmd", "run", "build"] if prod else ["npm.cmd", "run", "build:dev"]
+    )
 
     try:
         print(
-            f"Starting build process with {'production' if prod else 'development'} mode...")
+            f"Starting build process with {'production' if prod else 'development'} mode..."
+        )
         build_process = subprocess.Popen(
             build_command,
             cwd=os.getcwd(),
@@ -45,16 +47,15 @@ def run_build_process(prod: bool = True):
         # Stream output in real-time
         while True:
             output = build_process.stdout.readline()
-            if output == b'' and build_process.poll() is not None:
+            if output == b"" and build_process.poll() is not None:
                 break
             if output:
-                print(output.decode('utf-8').strip())
+                print(output.decode("utf-8").strip())
 
         # Check for errors
         if build_process.returncode != 0:
-            stderr = build_process.stderr.read().decode('utf-8')
-            print(
-                f"Build process failed with error code {build_process.returncode}")
+            stderr = build_process.stderr.read().decode("utf-8")
+            print(f"Build process failed with error code {build_process.returncode}")
             print(f"Error: {stderr}")
             return False
 
@@ -88,7 +89,7 @@ def copy_server_files(server_dir: str = "server", dist_dir: str = "dist"):
 
                 # Copy files
                 for file in files:
-                    if file.endswith('.py'):
+                    if file.endswith(".py"):
                         src_file = os.path.join(root, file)
                         dst_file = os.path.join(target_dir, file)
                         shutil.copy2(src_file, dst_file)
@@ -130,6 +131,7 @@ def create_package_json(dist_dir: str = "dist"):
         # Read the original package.json to get name and version
         with open("package.json", "r") as f:
             import json
+
             pkg_data = json.load(f)
 
         # Create a minimal package.json for production
@@ -137,14 +139,14 @@ def create_package_json(dist_dir: str = "dist"):
             "name": pkg_data.get("name", "carpenter-app"),
             "version": pkg_data.get("version", "1.0.0"),
             "private": True,
-            "scripts": {
-                "start": "node server/index.js"
-            },
+            "scripts": {"start": "node server/index.js"},
             "dependencies": {
                 # Add only production dependencies needed to run the server
                 "express": pkg_data.get("dependencies", {}).get("express", "^4.18.2"),
-                "starlette": pkg_data.get("dependencies", {}).get("starlette", "^0.28.0")
-            }
+                "starlette": pkg_data.get("dependencies", {}).get(
+                    "starlette", "^0.28.0"
+                ),
+            },
         }
 
         # Write the production package.json

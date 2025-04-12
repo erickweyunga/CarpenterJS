@@ -1,0 +1,36 @@
+{
+  "blog/send": {
+    "input": {
+      "type": "None",
+      "fields": {}
+    },
+    "output": {
+      "type": "None",
+      "fields": {}
+    }
+  },
+  "contact/submit": {
+    "input": {
+      "type": "ContactForm",
+      "fields": {
+        "name": "str",
+        "email": "str",
+        "message": "str"
+      }
+    },
+    "output": {
+      "type": "None",
+      "fields": {}
+    }
+  },
+  "contact/send": {
+    "input": {
+      "type": "None",
+      "fields": {}
+    },
+    "output": {
+      "type": "None",
+      "fields": {}
+    }
+  }
+}
